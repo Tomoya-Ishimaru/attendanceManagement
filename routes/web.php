@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\AdminController\ResourceController;
+use App\Http\Controllers\AdminController\Auth\LoginController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,4 +26,13 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+});
+
+Route::prefix('admin')->group(function () {
+    Route::get('login', [LoginController::class, 'create'])->name('admin.login');
+    Route::post('login', [LoginController::class, 'store'])->name('admin.login');
+
+    Route::middleware('auth:admin')->group(function () {
+        Route::get('dashboard', [ResourceController::class, 'index']);
+    });
 });
