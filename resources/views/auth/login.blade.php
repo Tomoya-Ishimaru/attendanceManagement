@@ -11,7 +11,7 @@
                 {{ session('status') }}
             </div>
         @endif
-
+        ユーザー用ログイン画面
         <form method="POST" action="{{ route('login') }}">
             @csrf
 

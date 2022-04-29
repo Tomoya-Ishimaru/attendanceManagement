@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController\ResourceController;
 use App\Http\Controllers\AdminController\Auth\LoginController;
+use App\Http\Controllers\TimeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,7 +16,7 @@ use App\Http\Controllers\AdminController\Auth\LoginController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::middleware([
@@ -26,6 +27,8 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+    Route::get('/in', [TimeController::class, 'punchIn'])->name('punchIn');
+    Route::get('/out', [TimeController::class, 'punchOut'])->name('punchOut');
 });
 
 Route::prefix('admin')->group(function () {
