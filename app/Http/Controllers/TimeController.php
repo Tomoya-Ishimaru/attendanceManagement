@@ -21,8 +21,7 @@ class TimeController extends Controller
         if($user->login_status == 1){
             $request->session()->put('login_status',  "1");
         }
-
-        return view('user.dashboard',[
+        return view('dashboard',[
             'message' => '',
             'status' => '',
         ])
@@ -117,20 +116,25 @@ class TimeController extends Controller
         ],);
     }
 
-    public function search(Request $request){
+    public function punchEdit(){
         $user = Auth::user();
-        if(!$timestamp = Daytimestamp::where('user_id', $user->id)
-                                 ->where('date', $request->date)
-                                 ->first()){
-                                    return view('user.changeRequest',['message' => '対象のデータが存在しませんでした。',
-                                    ])
-                                    ->with('timestamp',$timestamp,);
-                                    ;
-                                 }
-
-        return view('user.changeRequest',compact('timestamp'))
-        ;
+        return view('punch-edit');
     }
+
+    // public function search(Request $request){
+    //     $user = Auth::user();
+    //     if(!$timestamp = Daytimestamp::where('user_id', $user->id)
+    //                              ->where('date', $request->date)
+    //                              ->first()){
+    //                                 return view('user.changeRequest',['message' => '対象のデータが存在しませんでした。',
+    //                                 ])
+    //                                 ->with('timestamp',$timestamp,);
+    //                                 ;
+    //                              }
+
+    //     return view('user.changeRequest',compact('timestamp'))
+    //     ;
+    // }
 
 
 

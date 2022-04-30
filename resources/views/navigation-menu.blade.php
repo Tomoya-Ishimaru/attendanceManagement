@@ -13,7 +13,16 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        {{ __('打刻') }}
+                    </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('modify') }}" :active="request()->routeIs('modify')">
+                        {{ __('打刻修正') }}
+                    </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                        {{ __('シフト') }}
+                    </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                        {{ __('シフト申請') }}
                     </x-jet-nav-link>
                 </div>
             </div>

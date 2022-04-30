@@ -1,10 +1,12 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
+            {{ __('打刻') }}
         </h2>
     </x-slot>
 
+  
+    <x-flash-message status="$status" message="$message"/>
     <div class="appear left inview">
         @if($message !== null && $status==='1')
         <div class="item bg-blue-300 w-1/2 mx-auto p-2 my-4 text-white">{{$message}}</div>

@@ -24,11 +24,10 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [TimeController::class, 'index'])->name('dashboard');
     Route::get('/in', [TimeController::class, 'punchIn'])->name('punchIn');
     Route::get('/out', [TimeController::class, 'punchOut'])->name('punchOut');
+    Route::get('/modify', [TimeController::class, 'punchEdit'])->name('modify');
 });
 
 Route::prefix('admin')->group(function () {

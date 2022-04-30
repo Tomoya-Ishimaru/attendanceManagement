@@ -38,7 +38,7 @@
                 {{ $slot }}
             </main>
         </div>
-
+        <script src="{{ mix('js/flatpickr.js')}}"></script>
         @stack('modals')
 
         @livewireScripts
