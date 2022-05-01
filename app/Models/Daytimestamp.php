@@ -15,7 +15,8 @@ class daytimestamp extends Model
         'punchIn',
         'punchOut',
         'date',
-        'd_total'
+        'd_total',
+        'stamp_status',
     ];
 
     public function user()

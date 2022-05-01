@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Daytimestamp;
 use App\Models\Monthtimestamp;
+use App\Models\StampCheck;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Services\TimeCalc;
@@ -36,6 +37,7 @@ class TimeController extends Controller
         //出勤時の時間取得
         $timestamp = Daytimestamp::create([
             'user_id' => $user->id,
+            'stamp_status' => true,
             'punchIn' => Carbon::now(),
         ]);
 
@@ -121,21 +123,21 @@ class TimeController extends Controller
         return view('punch-edit');
     }
 
-    // public function search(Request $request){
-    //     $user = Auth::user();
-    //     if(!$timestamp = Daytimestamp::where('user_id', $user->id)
-    //                              ->where('date', $request->date)
-    //                              ->first()){
-    //                                 return view('user.changeRequest',['message' => '対象のデータが存在しませんでした。',
-    //                                 ])
-    //                                 ->with('timestamp',$timestamp,);
-    //                                 ;
-    //                              }
+    public function punchUpdata(Request $request){
 
-    //     return view('user.changeRequest',compact('timestamp'))
-    //     ;
-    // }
+        $user = Auth::user();
 
+        StampCheck::create([
+            'daytimestamp_id' => $request->punchId,
+            'newPunchIn' =>$request->punchInTime,
+            'newPunchOut' =>$request->punchOutTime,
+        ]);
+        
+        return redirect()
+        ->route('modify')
+        ->with(['message' => '打刻の修正を申請しました。',
+        'status' => 'info']);
+    }
 
-
+    
 }

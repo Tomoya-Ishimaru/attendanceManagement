@@ -28,6 +28,7 @@ Route::middleware([
     Route::get('/in', [TimeController::class, 'punchIn'])->name('punchIn');
     Route::get('/out', [TimeController::class, 'punchOut'])->name('punchOut');
     Route::get('/modify', [TimeController::class, 'punchEdit'])->name('modify');
+    Route::post('/punchupdata', [TimeController::class, 'punchUpdata'])->name('punchUpdata');
 });
 
 Route::prefix('admin')->group(function () {

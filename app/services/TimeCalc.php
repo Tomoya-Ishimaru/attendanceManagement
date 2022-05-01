@@ -49,4 +49,5 @@ class TimeCalc
         $hms = sprintf("%2d:%02d:%02d", $hours, $minutes, $seconds);
         return $hms;
     }
+
 }

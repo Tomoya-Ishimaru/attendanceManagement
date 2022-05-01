@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDaytimestampsTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,14 @@ class CreateDaytimestampsTable extends Migration
      */
     public function up()
     {
-        Schema::create('daytimestamps', function (Blueprint $table) {
+        Schema::create('stamp_checks', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')
+            $table->foreignId('daytimestamp_id')
             ->constrained()
             ->onUpdate('cascade')
             ->onDelete('cascade');
-            $table->boolean('stamp_status');
-            $table->dateTime('punchIn');
-            $table->dateTime('punchOut')->nullable();
-            $table->dateTime('date')->nullable();
-            $table->Time('d_total')->nullable();
+            $table->time('newPunchIn');
+            $table->time('newPunchOut');
             $table->timestamps();
         });
     }
@@ -35,6 +32,6 @@ class CreateDaytimestampsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('daytimestamps');
+        Schema::dropIfExists('stamp_checks');
     }
-}
+};
