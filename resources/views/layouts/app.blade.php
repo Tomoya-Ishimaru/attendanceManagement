@@ -27,8 +27,10 @@
 
         @if(auth('admin')->user())
         @include('admin-navigation-menu')
-        @endif
+        @else
         @include('navigation-menu')
+        @endif
+       
        
 
         <!-- Page Heading -->
