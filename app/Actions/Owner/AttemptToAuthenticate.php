@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Actions\Admin;
+namespace App\Actions\Owner;
 
 use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Validation\ValidationException;
@@ -32,10 +32,8 @@ class AttemptToAuthenticate
      */
     public function __construct(StatefulGuard $guard, LoginRateLimiter $limiter)
     {
-
         $this->guard = $guard;
         $this->limiter = $limiter;
-       
     }
 
     /**
@@ -46,7 +44,7 @@ class AttemptToAuthenticate
      * @return mixed
      */
     public function handle($request, $next)
-    { 
+    {
         if (Fortify::$authenticateUsingCallback) {
             return $this->handleUsingCustomCallback($request, $next);
         }

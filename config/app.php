@@ -197,6 +197,7 @@ return [
         App\Providers\FortifyServiceProvider::class,
         App\Providers\JetstreamServiceProvider::class,
         App\Providers\AdminLoginServiceProvider::class,
+        App\Providers\OwnerLoginServiceProvider::class,
 
     ],
 

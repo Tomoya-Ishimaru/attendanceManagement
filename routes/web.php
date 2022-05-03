@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminController\ResourceController;
+use App\Http\Controllers\OwnerController\ResourceController;
 use App\Http\Controllers\AdminController\OwnersController;
+use App\Http\Controllers\OwnerController\Auth\OwnerLoginController;
 use App\Http\Controllers\AdminController\Auth\LoginController;
 use App\Http\Controllers\TimeController;
 /*
@@ -48,4 +49,13 @@ Route::prefix('admin')->group(function () {
             Route::get('index', [OwnersController::class, 'expiredOwnerIndex'])->name('expired-owners.index');
             Route::post('destroy/{owner}', [OwnersController::class, 'expiredOwnerDestroy'])->name('expired-owners.destroy');
 });
+});
+
+Route::prefix('owner')->group(function () {
+    Route::get('login', [OwnerLoginController::class, 'create'])->name('owner.login');
+   
+    Route::post('login', [OwnerLoginController::class, 'store'])->name('owner.login');
+    Route::middleware('auth:owner')->group(function () {
+        Route::get('dashboard', [ResourceController::class, 'index'])->name('owner.dashboard');
+    });
 });

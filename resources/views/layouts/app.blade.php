@@ -27,6 +27,8 @@
 
         @if(auth('admin')->user())
         @include('admin-navigation-menu')
+        @elseif(auth('owner')->user())
+        @include('owner-navigation-menu')
         @else
         @include('navigation-menu')
         @endif
