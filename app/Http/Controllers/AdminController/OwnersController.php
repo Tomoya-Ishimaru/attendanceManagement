@@ -5,6 +5,7 @@ namespace App\Http\Controllers\AdminController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Owner; // Eloquent エロクアント
+use App\Models\Corporation;
 use Illuminate\Support\Facades\DB; // QueryBuilder クエリビルダ
 use Illuminate\Support\Facades\Hash;
 
@@ -49,12 +50,32 @@ class OwnersController extends Controller
             'password' => 'required|string|confirmed|min:8',
         ]);
 
-        
-        Owner::create([
+        try{
+            DB::transaction(function () use($request) {
+
+                $corporation = Corporation::create([
+                    'name' => $request->corpoName
+                ]);
+
+                Owner::create([
                     'name' => $request->name,
+                    'corporation_id' => $corporation->id,
                     'email' => $request->email,
                     'password' => Hash::make($request->password),
                 ]);
+
+
+            }, 2);
+            }catch(Throwable $e){
+                Log::error($e);
+                throw $e;
+            }
+
+
+
+
+
+       
         return redirect()
         ->route('owners.index')
         ->with(['message' => 'オーナー登録を実施しました。',

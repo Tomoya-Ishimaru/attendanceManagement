@@ -18,10 +18,10 @@
                     <x-jet-nav-link href="{{ route('modify') }}" :active="request()->routeIs('modify')">
                         {{ __('打刻修正') }}
                     </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                    <x-jet-nav-link href="{{ route('shift') }}" :active="request()->routeIs('shift')">
                         {{ __('シフト') }}
                     </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                    <x-jet-nav-link href="{{ route('shift-submit') }}" :active="request()->routeIs('shift-submit')">
                         {{ __('シフト申請') }}
                     </x-jet-nav-link>
                 </div>

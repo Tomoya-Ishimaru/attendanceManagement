@@ -1,7 +1,7 @@
 <x-app-layout>
   <x-slot name="header">
       <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-          従業員一覧
+          打刻変更依頼
       </h2>
   </x-slot>
 

@@ -139,5 +139,15 @@ class TimeController extends Controller
         'status' => 'info']);
     }
 
+    public function shift(Request $request){
+
+        return view('shift');
+    }
+
+    public function shiftSubmit(Request $request){
+
+        return view('shift-submit');
+    }
+
     
 }

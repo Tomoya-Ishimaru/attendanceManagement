@@ -30,6 +30,8 @@ Route::middleware([
     Route::get('/in', [TimeController::class, 'punchIn'])->name('punchIn');
     Route::get('/out', [TimeController::class, 'punchOut'])->name('punchOut');
     Route::get('/modify', [TimeController::class, 'punchEdit'])->name('modify');
+    Route::get('/shift/submit', [TimeController::class, 'shiftSubmit'])->name('shift-submit');
+    Route::get('/shift', [TimeController::class, 'shift'])->name('shift');
     Route::post('/punchupdata', [TimeController::class, 'punchUpdata'])->name('punchUpdata');
 });
 
@@ -57,5 +59,7 @@ Route::prefix('owner')->group(function () {
     Route::post('login', [OwnerLoginController::class, 'store'])->name('owner.login');
     Route::middleware('auth:owner')->group(function () {
         Route::get('dashboard', [ResourceController::class, 'index'])->name('owner.dashboard');
+        Route::get('punch-change', [ResourceController::class, 'punchChange'])->name('owner.punchChange');
+
     });
 });

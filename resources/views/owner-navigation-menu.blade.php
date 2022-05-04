@@ -13,7 +13,10 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('owner.dashboard') }}" :active="request()->routeIs('owner.dashboard')">
-                        {{ __('dashboard') }}
+                        {{ __('従業員一覧') }}
+                    </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('owner.punchChange') }}" :active="request()->routeIs('owner.punchChange')">
+                        {{ __('打刻変更依頼') }}
                     </x-jet-nav-link>
                 </div>
             </div>
