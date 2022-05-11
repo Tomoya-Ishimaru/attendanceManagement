@@ -15,9 +15,13 @@
                     <x-jet-nav-link href="{{ route('owner.dashboard') }}" :active="request()->routeIs('owner.dashboard')">
                         {{ __('従業員一覧') }}
                     </x-jet-nav-link>
+                    <x-jet-nav-link :href="route('expired-users.index')" :active="request()->routeIs('expired-users.index')">
+                        期限切れユーザー一覧
+                    </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('owner.punchChange') }}" :active="request()->routeIs('owner.punchChange')">
                         {{ __('打刻変更依頼') }}
                     </x-jet-nav-link>
+                    
                 </div>
             </div>
 

@@ -63,18 +63,11 @@ class OwnersController extends Controller
                     'email' => $request->email,
                     'password' => Hash::make($request->password),
                 ]);
-
-
             }, 2);
             }catch(Throwable $e){
                 Log::error($e);
                 throw $e;
-            }
-
-
-
-
-
+        }
        
         return redirect()
         ->route('owners.index')

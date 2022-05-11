@@ -10,6 +10,8 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Corporation;
+use App\Models\Daytimestamp;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
@@ -18,6 +20,7 @@ class User extends Authenticatable
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -29,6 +32,7 @@ class User extends Authenticatable
         'corporation_id',
         'email',
         'password',
+        'login_status',
     ];
 
     /**
@@ -64,5 +68,10 @@ class User extends Authenticatable
     public function corporation()
     {
         return $this->belongsTo(Corporation::class);
+    }
+
+    public function daytimestamp()
+    {
+        return $this->hasMany(DayTimeStamp::class);
     }
 }

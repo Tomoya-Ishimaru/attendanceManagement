@@ -15,6 +15,9 @@
                    
                     <x-flash-message status="session('status')" />
                     <div class="flex justify-end mb-4"> 
+                      <button onclick="location.href='{{ route('users.create')}}'" class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">新規登録する</button>                        
+                    </div>
+                    <div class="flex justify-end mb-4"> 
                      
                     </div>
                     <div class="lg:w-2/3 w-full mx-auto overflow-auto">
@@ -32,6 +35,16 @@
                             <td class="md:px-4 py-3">{{ $user->name }}</td>
                             <td class="md:px-4 py-3">{{ $user->email }}</td>
                             <td class="md:px-4 py-3">{{ $user->created_at}}</td>
+                            <td class="md:px-4 py-3">
+                              <button  onclick="location.href='{{ route('owners.user-detail', ['user' => $user->id ])}}'" class="text-white bg-indigo-400 border-0 py-2 px-4 focus:outline-none hover:bg-indigo-500 rounded ">詳細</button>                        
+                            </td>
+                            <form id="delete_{{$user->id}}" method="post" action="{{ route('owner.userDestroy', ['user' => $user->id ] )}}">
+                              @csrf
+                              @method('delete')
+                              <td class="md:px-4 py-3">
+                                <a href="#" data-id="{{ $user->id }}" onclick="deletePost(this)" class="text-white bg-red-400 border-0 py-2 px-4 focus:outline-none hover:bg-red-500 rounded ">削除</a>                        
+                              </td>
+                            </form>
                           </tr>
                           @endforeach
                         </tbody>
@@ -56,5 +69,13 @@
           </div>
       </div>
   </div>
+  <script>
+  function deletePost(e) {
+      'use strict';
+      if (confirm('本当に削除してもいいですか?')) {
+      document.getElementById('delete_' + e.dataset.id).submit();
+      }
+  }
+  </script>
 
 </x-app-layout>

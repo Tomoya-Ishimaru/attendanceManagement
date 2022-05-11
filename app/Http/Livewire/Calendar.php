@@ -69,25 +69,30 @@ class Calendar extends Component
         $user = Auth::user();
         if(!$this->timestamp = Daytimestamp::where('user_id', $user->id)
                                  ->where('date', $date)
-                                 ->first())
+                                 ->orderBy('created_at', 'desc')
+                                 ->first()
+                                // ->get()
+                                 )
                                  {
                                     $this->message="打刻記録がありません";
                                  }
                                 //   dd($this->timestamp->punchIn);
+                                // dd($this->timestamp);
 
         if($this->timestamp)
         {
             $this->punchId = $this->timestamp->id;
             $this->punchIn = new Carbon($this->timestamp->punchIn);
             $this->punchOut = new Carbon($this->timestamp->punchOut); 
+       
             $this->punchInDay =$this->punchIn->format('y-m-d');
-            $this->punchInTime =$this->punchIn->format('h:i:s');
+            $this->punchInTime =$this->punchIn->format('H:i:s');
             // $this->punchInHour =$this->punchInTime->hour;
             // $this->punchInMinute =$this->punchInTime->minute;
             // $this->punchInSecond =$this->punchInTime->second;
             $this->punchOutDay =$this->punchOut->format('y-m-d');
-            $this->punchOutTime =$this->punchOut->format('h:i:s');
-
+            $this->punchOutTime =$this->punchOut->format('H:i:s');
+            
             // $this->punchOutHour =$this->punchOutTime->hour;
             // $this->punchOutMinute =$this->punchOutTime->minute;
             // $this->punchOutSecond =$this->punchOutTime->second;         

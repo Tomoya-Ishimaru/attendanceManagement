@@ -43,9 +43,6 @@ Route::prefix('admin')->group(function () {
         Route::get('dashboard', [OwnersController::class, 'index']);
         Route::resource('owners', OwnersController::class)->middleware('auth:admin')->except(['show']);
     });
-
-    
-    
     Route::prefix('expired-owners')->
         middleware('auth:admin')->group(function(){
             Route::get('index', [OwnersController::class, 'expiredOwnerIndex'])->name('expired-owners.index');
@@ -60,6 +57,17 @@ Route::prefix('owner')->group(function () {
     Route::middleware('auth:owner')->group(function () {
         Route::get('dashboard', [ResourceController::class, 'index'])->name('owner.dashboard');
         Route::get('punch-change', [ResourceController::class, 'punchChange'])->name('owner.punchChange');
+        Route::post('punch-updata', [ResourceController::class, 'punchUpdata'])->name('owner.punchUpdata');
+        Route::delete('user-destroy/{user}', [ResourceController::class, 'destroy'])->name('owner.userDestroy');
+        Route::get('detail/{user}', [ResourceController::class, 'userDedail'])->name('owners.user-detail');
+        Route::get('create', [ResourceController::class, 'userCreate'])->name('users.create');
+        Route::post('store', [ResourceController::class, 'userStore'])->name('users.store');
+        
+
+        Route::prefix('expired-owners')->group(function(){
+            Route::get('index', [ResourceController::class, 'expiredUserIndex'])->name('expired-users.index');
+            Route::post('destroy/{user}', [ResourceController::class, 'expiredUserDestroy'])->name('expired-users.destroy');
+        });
 
     });
 });
