@@ -91,7 +91,7 @@ class TimeController extends Controller
 
          Monthtimestamp::create([
             'user_id' => $user->id,
-            'm_id' => date_format($timestamp->created_at,'Ym'),
+            'm_id' => date_format($timestamp->created_at,'Y-m'),
             'm_total' => $result_string
         ]);
 

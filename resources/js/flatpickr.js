@@ -1,16 +1,21 @@
 import flatpickr from "flatpickr";
+import monthSelectPlugin from 'flatpickr/dist/plugins/monthSelect/index';
 import { Japanese } from "flatpickr/dist/l10n/ja.js"
 
-// flatpickr("#event_date", {
-//   "locale": Japanese,
-//   minDate: "today",
-//   maxDate: new Date().fp_incr(30) 
-// });
 
 flatpickr("#calendar", {
   "locale": Japanese,
   // minDate: "today",
   maxDate: new Date().fp_incr(0) 
+});
+
+flatpickr("#monthCalendar", {
+  "locale": Japanese,
+  plugins:[
+    new monthSelectPlugin({
+      dateFormat: "Y-m"
+    })
+  ]
 });
 
 const setting = {

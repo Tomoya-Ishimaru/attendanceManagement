@@ -19,7 +19,7 @@ class CreateMonthtimestampsTable extends Migration
             ->constrained()
             ->onUpdate('cascade')
             ->onDelete('cascade');
-            $table->integer('m_id');
+            $table->string('m_id');
             $table->Time('m_total')->nullable();
             $table->timestamps();
         });

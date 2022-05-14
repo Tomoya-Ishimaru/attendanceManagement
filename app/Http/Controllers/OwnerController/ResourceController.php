@@ -138,8 +138,7 @@ class ResourceController extends Controller
         
 
         $owner = auth()->guard()->user();
-        // dd($owner->corporation_id);
-
+            
                 User::create([
                     'name' => $request->name,
                     'corporation_id' => $owner->corporation_id,

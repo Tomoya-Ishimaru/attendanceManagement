@@ -56,13 +56,11 @@ class Calendar extends Component
                 'dayOfWeek' => $this->dayOfWeek  
             ]);
         }
-        // dd($currentDate);
-        // dd($this->currentWeek);
     }
 
     public function getDate($date)
     {
-     
+        dd($date);
         $this->message="";
         $this->punchInTime="";
         $this->punchOutTime="";
@@ -71,14 +69,11 @@ class Calendar extends Component
                                  ->where('date', $date)
                                  ->orderBy('created_at', 'desc')
                                  ->first()
-                                // ->get()
                                  )
                                  {
                                     $this->message="打刻記録がありません";
                                  }
-                                //   dd($this->timestamp->punchIn);
-                                // dd($this->timestamp);
-
+                              
         if($this->timestamp)
         {
             $this->punchId = $this->timestamp->id;

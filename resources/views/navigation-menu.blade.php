@@ -4,7 +4,7 @@
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
-                <div class="shrink-0 flex items-center">
+                <div class=" w-10 shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
                         <x-jet-application-mark class="block h-9 w-auto" />
                     </a>
@@ -18,12 +18,12 @@
                     <x-jet-nav-link href="{{ route('modify') }}" :active="request()->routeIs('modify')">
                         {{ __('打刻修正') }}
                     </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('shift') }}" :active="request()->routeIs('shift')">
+                    <!-- <x-jet-nav-link href="{{ route('shift') }}" :active="request()->routeIs('shift')">
                         {{ __('シフト') }}
                     </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('shift-submit') }}" :active="request()->routeIs('shift-submit')">
                         {{ __('シフト申請') }}
-                    </x-jet-nav-link>
+                    </x-jet-nav-link> -->
                 </div>
             </div>
 
